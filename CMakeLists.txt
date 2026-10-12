@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 add_executable(${PROJECT_NAME}
-    src/generator.cpp
     src/main.cpp
 )
 
