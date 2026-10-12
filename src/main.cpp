@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 
     if (argc != 2) {
         std::cout
-            << "Usage: create_measurements.sh <number of records to create>\n";
+            << "Usage: ./1brc-generator <row_count>\n";
         exit(EXIT_FAILURE);
     }
 
