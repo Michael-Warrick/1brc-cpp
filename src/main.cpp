@@ -36,12 +36,10 @@ uint32_t generateThreadLocalRandom(const uint32_t &min, const uint32_t &max) {
 
 double generateThreadLocalRandomGaussianF(const double mean,
                                           const double stddev) {
-    // static thread_local std::random_device randomDevice;
     static thread_local std::mt19937 generator;
     std::uniform_int_distribution<> distribution(-99, 399);
 
     return static_cast<double>(distribution(generator)) / powf(10.0f, 1.0);
-    // return distribution(generator);
 }
 
 std::string doubleToStringWithPrecision(const double value,
@@ -552,5 +550,6 @@ int main(int argc, char *argv[]) {
     std::cout << "Created file with "
               << std::format(std::locale("en_US.UTF-8"), "{:L}", size)
               << " measurements in " << minutes.count() << "m\n";
+              
     return 0;
 }
