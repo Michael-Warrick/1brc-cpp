@@ -10,8 +10,8 @@
 #include <cstdint>
 
 uint32_t generateThreadLocalRandom(const uint32_t &min, const uint32_t &max);
-double generateThreadLocalRandomGaussianF(const double &mean,
-                                          const double &stddev);
+double generateThreadLocalRandomGaussianF(const double mean,
+                                          const double stddev);
 
 struct WeatherStation {
     static double generateMeasurement(const double meanTemperature) {
@@ -27,18 +27,21 @@ struct WeatherStation {
 static const std::filesystem::path kMeasurementFile("measurements.txt");
 
 uint32_t generateThreadLocalRandom(const uint32_t &min, const uint32_t &max) {
-    static thread_local std::mt19937 generator;
+    static thread_local std::random_device randomDevice;
+    static thread_local std::mt19937 generator(randomDevice());
     std::uniform_int_distribution<uint32_t> distribution(min, max);
 
     return distribution(generator);
 }
 
-double generateThreadLocalRandomGaussianF(const double &mean,
-                                          const double &stddev) {
+double generateThreadLocalRandomGaussianF(const double mean,
+                                          const double stddev) {
+    // static thread_local std::random_device randomDevice;
     static thread_local std::mt19937 generator;
-    std::normal_distribution<double> distribution{mean, stddev};
+    std::uniform_int_distribution<> distribution(-99, 399);
 
-    return distribution(generator);
+    return static_cast<double>(distribution(generator)) / powf(10.0f, 1.0);
+    // return distribution(generator);
 }
 
 std::string doubleToStringWithPrecision(const double value,
@@ -62,13 +65,13 @@ int main(int argc, char *argv[]) {
     const uint32_t size = std::stoi(argv[1]);
 
     // Cleanup any previous attempts
-    // if (std::filesystem::exists(kMeasurementFile)) {
-    //     try {
-    //         std::filesystem::remove(kMeasurementFile);
-    //     } catch (const std::filesystem::filesystem_error &e) {
-    //         std::cerr << "Filesystem error: " << e.what() << '\n';
-    //     }
-    // }
+    if (std::filesystem::exists(kMeasurementFile)) {
+        try {
+            std::filesystem::remove(kMeasurementFile);
+        } catch (const std::filesystem::filesystem_error &e) {
+            std::cerr << "Filesystem error: " << e.what() << '\n';
+        }
+    }
 
     constexpr std::array<WeatherStation, 413> stations = {
         {{"Abha", 18.0},
@@ -497,54 +500,57 @@ int main(int argc, char *argv[]) {
         futureCount = 1;
     }
 
-    std::vector<std::future<void>> futures;
+    std::vector<std::future<std::string>> futures;
     futures.resize(futureCount);
 
     for (uint32_t i = 0; i < futureCount; ++i) {
+        std::cout << "Generating Measurements Data (" << i + 1 << '/'
+                  << futureCount + 1 << ")...\n";
+
+        const auto chunkStartTime = std::chrono::high_resolution_clock::now();
+
         int finalFuture = i;
-        std::string data;
-        futures.at(i) = std::async(std::launch::async, [stations, chunkSize,
-                                                        finalFuture] {
-            std::string data;
+        futures[i] = std::async(std::launch::async, [&]() {
+            std::string data = "";
             for (uint32_t j = finalFuture * chunkSize;
                  j <= (finalFuture + 1) * chunkSize - 1; ++j) {
-                WeatherStation station =
-                    stations.at(generateThreadLocalRandom(0, stations.size()));
+                WeatherStation station = stations.at(
+                    generateThreadLocalRandom(0, stations.size() - 1));
                 data.append(station.id);
                 data.append(";");
                 data.append(doubleToStringWithPrecision(
                     WeatherStation::generateMeasurement(station.measurement),
                     1));
                 data.append("\n");
-
-                // std::cout << data << "\n";
             }
 
-            // wait until ready and then write to file?
-            // try {
-            //     std::fstream file(kMeasurementFile, std::fstream::in | std::fstream::out | std::fstream::app);
-            //     if (file.is_open()) {
-            //         file << data;
-            //         file.close();
-            //     } else {
-            //         std::cerr << "Error: Failed to open file \"" << kMeasurementFile.string() << "\"!\n";
-            //     }
-            // } catch (const std::filesystem::filesystem_error &e) {
-            //     std::cerr << "Filesystem error: " << e.what() << '\n';
-            // }
+            return data;
         });
 
-        futures.at(i).wait();
-        std::cout << data << "\n";
+        std::fstream file(kMeasurementFile, std::fstream::in |
+                                                std::fstream::out |
+                                                std::fstream::app);
+        if (file.is_open()) {
+            file << futures[i].get();
+            file.close();
+        } else {
+            std::cerr << "Error: Failed to open file \""
+                      << kMeasurementFile.string() << "\"!\n";
+        }
+
+        const auto chunkEndTime = std::chrono::high_resolution_clock::now();
+        const auto chunkElapsedTimeSeconds =
+        std::chrono::duration_cast<std::chrono::seconds>(chunkEndTime - chunkStartTime);
+
+        std::cout << "Done (" << chunkElapsedTimeSeconds << ").\n";
     }
 
     const auto endTime = std::chrono::high_resolution_clock::now();
-    const auto milliseconds =
-        std::chrono::duration_cast<std::chrono::milliseconds>(endTime -
-                                                              startTime);
+    const auto minutes =
+        std::chrono::duration_cast<std::chrono::minutes>(endTime - startTime);
 
     std::cout << "Created file with "
-              << std::format(std::locale("en_GB"), "{:L}", size)
-              << " measurements in " << milliseconds.count() << "ms\n";
+              << std::format(std::locale("en_US.UTF-8"), "{:L}", size)
+              << " measurements in " << minutes.count() << "m\n";
     return 0;
 }
