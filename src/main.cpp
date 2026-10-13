@@ -1,11 +1,12 @@
 #include <iostream>
 
-#include "1brc/username.hpp"
+#include "1brc/michael.hpp"
 
 int main(int argc, char *argv[]) {
-    std::cout << "Hello, World!\n";
+    
+    solution("measurements.txt.backup");
 
-    solution("");
+    std::cout << "Done.\n";
 
     return 0;
 }
