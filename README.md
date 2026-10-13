@@ -40,7 +40,7 @@ There are 413 unique station names, from which the one billion rows are generate
 ## Submission
 1. Create a fork of this repository on your own GitHub profile. This will let you submit your solution via a pull request.
 
-2. Create a new implementation file under `src/solutions/` with the name `<username>.cpp` (in my case it would be `michael.cpp`). To get started, it is recommended to use the reference solution as a template, however please feel free to start from scratch if you'd like.
+2. Rename the header file `username.hpp` under `include/1brc/` to be your name (in my case it would be `michael.hpp`) as well as the include guards and of course, ensure in `main.cpp` this name change has been reflected too. To get started, it is recommended to use the reference solution as a template, however please feel free to start from scratch if you'd like.
 
 3. Make it fast! Literally, as fast as you possibly can without running out of memory. It is recommended that you test your solution at least once on the GitHub Codespace VM before submitting as it will be the test bench for this challenge.
 
