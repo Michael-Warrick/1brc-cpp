@@ -13,11 +13,14 @@
 
 // Don't change signature of this function, feel free to change everything else
 inline void solution(const std::string& filename) {
+    static constexpr std::uint64_t CHUNK_SIZE = 64 * 1024 * 1024;
+
     using StationID = std::uint16_t;
     using Temperature = std::int16_t;
 
     struct Measurement {
-        std::vector<Temperature> records{};
+        std::uint64_t sum = 0;
+        size_t count = 0;
         Temperature min = std::numeric_limits<Temperature>::max();
         Temperature max = std::numeric_limits<Temperature>::min();
     };
@@ -61,14 +64,17 @@ inline void solution(const std::string& filename) {
         float temperature = std::stof(line.substr(delimiter_pos + 1));
         Temperature temp = static_cast<Temperature>( temperature * 10 );
 
-        station_data[station_id].records.push_back(temp);
+        Measurement& m = station_data[station_id];
 
-        if (temp < station_data[station_id].min) {
-            station_data[station_id].min = temp;
+        m.sum += temp;
+        m.count++;
+
+        if (temp < m.min) {
+            m.min = temp;
         }
 
-        if (temp > station_data[station_id].max) {
-            station_data[station_id].max = temp;
+        if (temp > m.max) {
+            m.max = temp;
         }
     }
 
@@ -86,12 +92,11 @@ inline void solution(const std::string& filename) {
     for (const auto& station: keys) {
         float sum = 0.0f;
         const auto& station_id = name_lookup[station];
-        const auto& vec_temp = station_data[station_id].records;
-        for (Temperature temp: vec_temp) {
-            sum += temp;
-        }
-        float average = sum / vec_temp.size();
-        outputFile << std::fixed << std::setprecision(1) << station << ";" << station_data[station_id].min << ";" << average << ";" << station_data[station_id].max << "\n";
+        
+        Measurement& measurement = station_data[station_id];
+
+        float average = measurement.sum / measurement.count;
+        outputFile << std::fixed << std::setprecision(1) << station << ";" << measurement.min << ";" << average << ";" << measurement.max << "\n";
     }
 }
 
