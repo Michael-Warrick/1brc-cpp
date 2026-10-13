@@ -1,26 +1,42 @@
 #ifndef OBRC_USERNAME_HPP
 #define OBRC_USERNAME_HPP
 
+#include <cstdint>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <fstream>
 #include <map>
+#include <unordered_map>
 #include <string>
 #include <vector>
 
 // Don't change signature of this function, feel free to change everything else
 inline void solution(const std::string& filename) {
-    std::ifstream inputFile(filename);
+    using StationID = std::uint16_t;
+    using Temperature = std::int16_t;
+
+    struct Measurement {
+        std::vector<Temperature> records{};
+        Temperature min = std::numeric_limits<Temperature>::max();
+        Temperature max = std::numeric_limits<Temperature>::min();
+    };
+
+    StationID current_id = 0;
+    
+    std::map<std::string, StationID, std::less<std::string>> name_lookup{};
+    
+    std::unordered_map<StationID, std::vector<Temperature>> station_data{};
+    
+    std::unordered_map<StationID, std::pair<Temperature, Temperature>> station_ranges{};
+    
+    std::ifstream inputFile(filename, std::ios::in);
 
     if (!inputFile.is_open()) {
         std::cerr << "Error opening file \n";
         return;
     }
     
-    std::map<std::string, std::vector<float>, std::less<std::string>> station_data{};
-    std::map<std::string, float> station_mins{};
-    std::map<std::string, float> station_maxs{};
-
     std::string line;
     
     while (std::getline(inputFile, line)) {
@@ -31,14 +47,26 @@ inline void solution(const std::string& filename) {
         }
 
         std::string station_name = line.substr(0, delimiter_pos);
-        float temperature = std::stof(line.substr(delimiter_pos + 1));
-        station_data[station_name].push_back(temperature);
+        StationID station_id = 0;
 
-        if (station_mins.find(station_name) == station_mins.end() || temperature < station_mins[station_name]) {
-            station_mins[station_name] = temperature;
+        if (name_lookup.contains(station_name)) {
+            station_id = name_lookup[station_name];
+        } else {
+            name_lookup[station_name] = current_id;
+            station_id = current_id++;
+            station_ranges[station_id] = std::pair<Temperature, Temperature>{std::numeric_limits<Temperature>::max(), std::numeric_limits<Temperature>::min()};
         }
-        if (station_maxs.find(station_name) == station_maxs.end() || temperature > station_maxs[station_name]) {
-            station_maxs[station_name] = temperature;
+
+        float temperature = std::stof(line.substr(delimiter_pos + 1));
+        Temperature temp = static_cast<Temperature>( temperature * 10 );
+        station_data[station_id].push_back(temp);
+
+        if (temp < station_ranges[station_id].first) {
+            station_ranges[station_id].first = temp;
+        }
+
+        if (temp > station_ranges[station_id].second) {
+            station_ranges[station_id].second = temp;
         }
     }
 
@@ -51,14 +79,15 @@ inline void solution(const std::string& filename) {
         return;
     }
 
-    for (const auto& [station_name, temperatures] : station_data) {
+    for (const auto& [station_name, station_id] : name_lookup) {
         float sum = 0.0f;
-        for (float temp : temperatures) {
+        const auto& vec_temp = station_data[station_id];
+        for (Temperature temp: vec_temp) {
             sum += temp;
         }
-        float average = sum / temperatures.size();
-        outputFile << std::fixed << std::setprecision(1) << station_name << ";" << station_mins[station_name] << ";" << average << ";" << station_maxs[station_name] << "\n";
+        float average = sum / vec_temp.size();
+        outputFile << std::fixed << std::setprecision(1) << station_name << ";" << station_ranges[station_id].first << ";" << average << ";" << station_ranges[station_id].second << "\n";
     }
 }
 
-#endif OBRC_USERNAME_HPP
+#endif //OBRC_USERNAME_HPP
