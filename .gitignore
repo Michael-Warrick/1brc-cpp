@@ -1,4 +1,4 @@
-measurements.txt
+measurements*.txt
 output.txt
 
 # C++ stuff

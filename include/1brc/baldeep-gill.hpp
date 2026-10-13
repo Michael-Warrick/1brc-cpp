@@ -1,6 +1,7 @@
 #ifndef OBRC_USERNAME_HPP
 #define OBRC_USERNAME_HPP
 
+#include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <iomanip>
@@ -11,13 +12,52 @@
 #include <string>
 #include <vector>
 
+static constexpr std::uint64_t CHUNK_SIZE = 64 * 1024 * 1024;
+
+using StationID = std::uint16_t;
+using Temperature = std::int16_t;
+
+Temperature stotemp(const std::string& str) {
+    size_t size = str.size();
+    std::uint8_t i{0};
+    bool neg = false;
+    Temperature out{0};
+
+    if (str[0] == '-') {
+        neg = true;
+        ++i;
+    }
+    
+    --size;
+    // 1 2 . 7 -> 127
+    // 0 1 2 3 
+    // 1 2 3 4 
+    
+    while (i < size) {
+        if (str[i] == '.') { ++i; continue; }
+
+        out += (str[i] - '0') * ( std::pow(10, size - i - 1) );
+        ++i;
+    }
+
+    out += (str[i] - '0');
+
+    if (neg) out *= -1;
+
+    return out;
+}
+
+std::string temptos(const Temperature& temperature) {
+    const std::int32_t value = temperature;
+    const std::int32_t magnitude = value < 0 ? -value : value;
+
+    return (value < 0 ? "-" : "") +
+           std::to_string(magnitude / 10) + "." +
+           std::to_string(magnitude % 10);
+}
+
 // Don't change signature of this function, feel free to change everything else
 inline void solution(const std::string& filename) {
-    static constexpr std::uint64_t CHUNK_SIZE = 64 * 1024 * 1024;
-
-    using StationID = std::uint16_t;
-    using Temperature = std::int16_t;
-
     struct Measurement {
         std::uint64_t sum = 0;
         size_t count = 0;
@@ -61,8 +101,7 @@ inline void solution(const std::string& filename) {
             keys.push_back(station_name);
         }
 
-        float temperature = std::stof(line.substr(delimiter_pos + 1));
-        Temperature temp = static_cast<Temperature>( temperature * 10 );
+        Temperature temp = stotemp(line.substr(delimiter_pos + 1));
 
         Measurement& m = station_data[station_id];
 
@@ -96,7 +135,7 @@ inline void solution(const std::string& filename) {
         Measurement& measurement = station_data[station_id];
 
         float average = measurement.sum / measurement.count;
-        outputFile << std::fixed << std::setprecision(1) << station << ";" << measurement.min << ";" << average << ";" << measurement.max << "\n";
+        outputFile << std::fixed << std::setprecision(1) << station << ";" << temptos(measurement.min) << ";" << average << ";" << temptos(measurement.max) << "\n";
     }
 }
 
