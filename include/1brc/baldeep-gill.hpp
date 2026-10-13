@@ -21,15 +21,15 @@ inline void solution(const std::string& filename) {
         Temperature min = std::numeric_limits<Temperature>::max();
         Temperature max = std::numeric_limits<Temperature>::min();
     };
+    
+    std::unordered_map<std::string, StationID> name_lookup{};
+    std::unordered_map<StationID, Measurement> station_data{};
 
+    std::vector<std::string> keys{};
+    
     StationID current_id = 0;
     
-    std::map<std::string, StationID, std::less<std::string>> name_lookup{};
-    
-    std::unordered_map<StationID, std::vector<Temperature>> station_data{};
-    
-    std::unordered_map<StationID, std::pair<Temperature, Temperature>> station_ranges{};
-    
+
     std::ifstream inputFile(filename, std::ios::in);
 
     if (!inputFile.is_open()) {
@@ -54,19 +54,21 @@ inline void solution(const std::string& filename) {
         } else {
             name_lookup[station_name] = current_id;
             station_id = current_id++;
-            station_ranges[station_id] = std::pair<Temperature, Temperature>{std::numeric_limits<Temperature>::max(), std::numeric_limits<Temperature>::min()};
+
+            keys.push_back(station_name);
         }
 
         float temperature = std::stof(line.substr(delimiter_pos + 1));
         Temperature temp = static_cast<Temperature>( temperature * 10 );
-        station_data[station_id].push_back(temp);
 
-        if (temp < station_ranges[station_id].first) {
-            station_ranges[station_id].first = temp;
+        station_data[station_id].records.push_back(temp);
+
+        if (temp < station_data[station_id].min) {
+            station_data[station_id].min = temp;
         }
 
-        if (temp > station_ranges[station_id].second) {
-            station_ranges[station_id].second = temp;
+        if (temp > station_data[station_id].max) {
+            station_data[station_id].max = temp;
         }
     }
 
@@ -79,14 +81,17 @@ inline void solution(const std::string& filename) {
         return;
     }
 
-    for (const auto& [station_name, station_id] : name_lookup) {
+    std::sort(keys.begin(), keys.end());
+
+    for (const auto& station: keys) {
         float sum = 0.0f;
-        const auto& vec_temp = station_data[station_id];
+        const auto& station_id = name_lookup[station];
+        const auto& vec_temp = station_data[station_id].records;
         for (Temperature temp: vec_temp) {
             sum += temp;
         }
         float average = sum / vec_temp.size();
-        outputFile << std::fixed << std::setprecision(1) << station_name << ";" << station_ranges[station_id].first << ";" << average << ";" << station_ranges[station_id].second << "\n";
+        outputFile << std::fixed << std::setprecision(1) << station << ";" << station_data[station_id].min << ";" << average << ";" << station_data[station_id].max << "\n";
     }
 }
 
