@@ -22,6 +22,7 @@
 
 // Don't change signature of this function, feel free to change everything else
 inline void solution(const std::string &filename) {
+    time_t startTime = ::clock();
     ::printf("Running ");
 
     // Obtain OS's default page size
@@ -35,8 +36,6 @@ inline void solution(const std::string &filename) {
 
     ::setlocale(LC_NUMERIC, "en_US.UTF-8");
     ::printf("(file size: %'ld MiB)...\n", fileSize / 1'000'000);
-
-    time_t startTime = ::clock();
 
     // Open the file as a handle
     int fd = ::open(filename.c_str(), O_RDONLY);
@@ -82,7 +81,7 @@ inline void solution(const std::string &filename) {
                 continue;
             }
 
-            printf("%c", data[j]);
+            // printf("%c", data[j]);
         }
 
         // Unmap before next buffer
@@ -93,13 +92,13 @@ inline void solution(const std::string &filename) {
     }
 
     ::close(fd);
+    ::free(buffer);
 
     time_t endTime = ::clock();
     time_t elapsedTime = endTime - startTime;
     uint32_t msTime = elapsedTime * 1000 / CLOCKS_PER_SEC;
-    ::printf("Done (%ds %dms).\n", msTime / 1000, msTime % 1000);
-
-    ::free(buffer);
+    ::printf("Done (%dm %ds %dms).\n", (msTime / 1000) / 60, (msTime / 1000) % 60,
+             msTime % 1000);
 }
 
 #endif // OBRC_MICHAEL_HPP
