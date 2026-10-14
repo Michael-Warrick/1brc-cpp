@@ -164,6 +164,9 @@ inline void solution(const std::string& filename) {
         delete temp_str;
     }
 
+    munmap(mapped, filesize);
+    close(fd);
+
     //// mmap
 
     // std::ifstream inputFile(filename, std::ios::in);
