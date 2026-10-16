@@ -62,33 +62,25 @@ struct StringViewEquals {
     }
 };
 
-Temperature stotemp(const std::string_view& str) {
-    size_t size = str.size();
-    std::uint8_t i{0};
-    bool neg = false;
-    Temperature out{0};
+Temperature stotemp(const char* ptr) {
+    bool negative = (*ptr == '-');
 
-    if (str[0] == '-') {
-        neg = true;
-        ++i;
-    }
-    
-    --size;
-    // 1 2 . 7 -> 127
-    // 0 1 2 3 
-    // 1 2 3 4 
-    
-    while (i < size && str[i] != '.') {
+    if (negative) ++ptr;
 
-        out = out * 10  + (str[i] - '0');
-        ++i;
+    Temperature value{0};
+
+    if (ptr[1] == '.') {
+        // x.x
+        value = static_cast<Temperature>((ptr[0] - '0') * 10 + (ptr[2] - '0'));
+
+        return negative ? static_cast<Temperature>(-value) : static_cast<Temperature>(value);
     }
 
-    if (str[i] == '.') ++i;
+    // xx.x
 
-    out += out * 10 + (str[i] - '0');
+    value = static_cast<Temperature>((ptr[0] - '0') * 100 + (ptr[1] - '0') * 10 + (ptr[3] - '0'));
 
-    return (neg) ? static_cast<Temperature>(-out) : out;
+    return negative ? static_cast<Temperature>(-value) : static_cast<Temperature>(value);
 }
 
 std::string temptos(const Temperature& temperature) {
@@ -116,14 +108,6 @@ inline void solution(const std::string& filename) {
     
     std::unordered_map<std::string_view, StationID, StringViewHash, StringViewEquals> name_lookup{};
     std::vector<Station> data{};
-
-    // junk
-    // std::unordered_map<StationID, Measurement> station_data{};
-    // std::vector<std::string> keys{};
-    
-    // StationID current_id = 0;
-
-    //// mmap
     
     int fd = open(filename.c_str(), O_RDONLY);
     size_t filesize = lseek(fd, 0, SEEK_END);
@@ -141,12 +125,14 @@ inline void solution(const std::string& filename) {
         const char* newline = static_cast<const char*>(std::memchr(semi + 1, '\n', end_ptr - semi - 1));
 
         std::string_view station_name = std::string_view(file_ptr, semi - file_ptr);
-        std::string_view temp_string = std::string_view(semi + 1, newline - semi - 1);
+        Temperature temp = stotemp(semi + 1);
 
-        Temperature temp = stotemp(temp_string);
+        // std::cout << temp_string << " " << temp << "\n";
+
+        // std::cout << (temp == temp2) << "\n";
 
         auto [it, inserted] = name_lookup.try_emplace(
-            std::string(station_name),
+            station_name,
             static_cast<StationID>(data.size())
         );
 
@@ -172,60 +158,6 @@ inline void solution(const std::string& filename) {
         file_ptr = newline + 1;
     }
 
-    // for (size_t index_ = 0; index_ < filesize; ) {
-    //     const char* semi = std::strchr(&mapped[index_], ';');
-    //     size_t size = (semi - &mapped[index_]) + 1;
-    //     // char* station_name = new char[size];
-    //     std::string_view station_name(semi - &mapped[index_]);
-    //     std::memcpy(station_name, &mapped[index_], size - 1);
-    //     station_name[size - 1] = '\0';
-
-    //     // std::cout << station_name << "\n";
-        
-    //     index_ += size;
-
-    //     char* newline = std::strchr(&mapped[index_], '\n');
-    //     size = (newline - &mapped[index_]) + 1;
-    //     char* temp_str = new char[size];
-    //     std::memcpy(temp_str, &mapped[index_], size - 1);
-    //     temp_str[size - 1] = '\0';
-    //     Temperature temp = stotemp(temp_str);
-
-    //     index_ += size;
-
-    //     // std::cout << station_name << temp_str << "\n";
-
-
-    //     StationID station_id = 0;
-
-    //     // std::cout << station_name << "\n";
-
-    //     if (name_lookup.contains(station_name)) {
-    //         station_id = name_lookup[station_name];
-    //     } else {
-    //         name_lookup[station_name] = current_id;
-    //         station_id = current_id++;
-
-    //         keys.push_back(station_name);
-    //     }
-
-    //     Measurement& m = station_data[station_id];
-
-    //     m.sum += temp;
-    //     m.count++;
-
-    //     if (temp < m.min) {
-    //         m.min = temp;
-    //     }
-
-    //     if (temp > m.max) {
-    //         m.max = temp;
-    //     }
-
-    //     delete station_name;
-    //     delete temp_str;
-    // }
-
     munmap(mapped, filesize);
     close(fd);
 
@@ -236,18 +168,6 @@ inline void solution(const std::string& filename) {
         return;
     }
 
-    // std::sort(keys.begin(), keys.end());
-
-    // for (const auto& station: keys) {
-    //     // std::cout << station << "\n";
-    //     const auto& station_id = name_lookup[station];
-        
-    //     Measurement& measurement = station_data[station_id];
-
-    //     double average =  ( measurement.sum / 10.0f ) / measurement.count;
-    //     outputFile << std::fixed << std::setprecision(1) << station << ";" << temptos(measurement.min) << ";" << average << ";" << temptos(measurement.max) << "\n";
-    // }
-
     std::sort(
         data.begin(),
         data.end(),
@@ -256,7 +176,7 @@ inline void solution(const std::string& filename) {
 
     for (const auto& station: data) {
         double average = (station.measurement_.sum / 10.0) / station.measurement_.count;
-        outputFile << std::fixed << std::setprecision(1) << station.station_ << ";" << temptos(station.measurement_.min) << ";" << average << temptos(station.measurement_.max) << "\n";
+        outputFile << std::fixed << std::setprecision(1) << station.station_ << ";" << temptos(station.measurement_.min) << ";" << average << ";" << temptos(station.measurement_.max) << "\n";
     }
     
 }
