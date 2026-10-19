@@ -1,0 +1,413 @@
+Fairbanks;-114;-23.0;63
+Maun;128;224.0;322
+Napier;54;146.0;246
+Villahermosa;163;270.0;365
+Mzuzu;77;177.0;280
+Tamanrasset;133;216.0;315
+Almaty;-8;99.0;203
+Hanga Roa;117;204.0;296
+Makassar;180;266.0;353
+Wichita;49;138.0;229
+Portland (OR);16;123.0;211
+Dakar;153;239.0;335
+İzmir;79;179.0;269
+Managua;184;273.0;365
+Malé;194;280.0;373
+Mexico City;86;175.0;268
+Bucharest;19;108.0;194
+Virginia Beach;67;157.0;244
+Dar es Salaam;170;258.0;348
+Santo Domingo;167;259.0;346
+Bloemfontein;61;156.0;247
+Honolulu;165;254.0;352
+Memphis;75;171.0;263
+Houston;116;207.0;300
+Roseau;173;261.0;351
+Makurdi;168;259.0;349
+Kunming;49;156.0;241
+Lusaka;111;199.0;284
+Tirana;60;152.0;240
+Milan;40;129.0;222
+Yakutsk;-182;-87.0;15
+Cairns;165;250.0;338
+Albuquerque;51;139.0;225
+Vilnius;-29;59.0;150
+Ljubljana;20;108.0;205
+New Delhi;160;249.0;345
+Edinburgh;-7;93.0;184
+Gagnoa;171;260.0;347
+Perth;87;187.0;272
+Thiès;154;239.0;322
+El Paso;95;180.0;267
+Fianarantsoa;83;179.0;272
+Xi'an;49;141.0;231
+Johannesburg;71;154.0;255
+Omaha;15;105.0;193
+Anadyr;-158;-69.0;19
+Austin;116;206.0;314
+Tokyo;62;153.0;257
+Columbus;27;116.0;207
+Seattle;21;113.0;212
+Livingstone;125;217.0;309
+Berlin;17;103.0;193
+Flores,  Petén;172;264.0;357
+Riyadh;171;260.0;364
+Paris;29;122.0;213
+Marseille;64;158.0;249
+Ashgabat;77;170.0;261
+Luanda;162;258.0;354
+Ankara;33;119.0;203
+Panama City;193;279.0;374
+Porto;62;156.0;253
+Willemstad;184;279.0;373
+Atlanta;82;169.0;260
+Astana;-57;35.0;133
+Vaduz;9;100.0;192
+Jerusalem;94;182.0;273
+Moscow;-31;57.0;153
+Hamburg;13;96.0;188
+Dodoma;138;227.0;312
+Vladivostok;-40;49.0;156
+Whitehorse;-87;-1.0;88
+Birao;170;264.0;369
+Kyiv;-23;84.0;171
+Nakhon Ratchasima;186;273.0;367
+New York City;40;128.0;223
+Nuuk;-103;-13.0;74
+Phnom Penh;193;283.0;378
+Milwaukee;1;89.0;179
+Seville;101;191.0;280
+San Antonio;112;208.0;292
+Chihuahua;97;185.0;273
+George Town;186;278.0;370
+Las Palmas de Gran Canaria;123;211.0;315
+Aden;202;291.0;376
+Guatemala City;117;203.0;292
+Praia;148;244.0;334
+Sochi;46;142.0;235
+Bordeaux;56;142.0;245
+Dhaka;166;259.0;354
+Arkhangelsk;-75;13.0;103
+Yinchuan;-8;89.0;175
+Tunis;92;183.0;272
+Dolisie;144;239.0;328
+Tbilisi;37;128.0;219
+Bamako;180;278.0;369
+Juba;178;278.0;369
+Tabora;139;229.0;322
+Bulawayo;98;188.0;271
+Andorra la Vella;-9;97.0;205
+Shanghai;83;166.0;254
+Pointe-Noire;169;260.0;354
+Veracruz;171;253.0;344
+Moncton;-36;61.0;153
+Anchorage;-64;28.0;123
+Maputo;132;228.0;321
+Muscat;187;280.0;375
+Beirut;119;209.0;303
+Skopje;17;124.0;211
+Palembang;181;273.0;363
+Batumi;59;139.0;239
+Fresno;79;179.0;275
+Denpasar;147;236.0;328
+Tabriz;38;126.0;219
+Ouagadougou;195;282.0;376
+Baku;58;150.0;255
+Melbourne;64;150.0;244
+Entebbe;121;209.0;299
+Detroit;14;100.0;207
+Rome;52;151.0;248
+Kinshasa;169;252.0;337
+Zanzibar City;172;259.0;351
+Kolkata;178;267.0;360
+Honiara;172;264.0;355
+Ouahigouya;198;286.0;377
+Tamale;182;278.0;382
+Frankfurt;6;105.0;196
+Dikson;-195;-110.0;-20
+Port Moresby;176;269.0;364
+Prague;-2;83.0;174
+Dubai;179;269.0;363
+Louisville;57;138.0;231
+Busan;62;150.0;235
+Novosibirsk;-72;16.0;108
+Athens;94;192.0;275
+Singapore;177;269.0;359
+Mek'ele;134;227.0;317
+Chișinău;15;102.0;195
+Jacksonville;119;203.0;307
+Cabo San Lucas;142;239.0;325
+Pontianak;190;277.0;372
+Yangon;182;275.0;374
+Pittsburgh;19;107.0;206
+Ottawa;-20;65.0;155
+Sapporo;0;88.0;178
+Kathmandu;95;183.0;268
+Port-Gentil;172;260.0;354
+Iqaluit;-185;-92.0;-1
+Split;74;161.0;252
+Da Nang;165;258.0;362
+Kumasi;174;260.0;344
+Douala;169;266.0;349
+Bujumbura;149;237.0;324
+Wrocław;3;96.0;186
+Lviv;-11;78.0;169
+Surabaya;178;270.0;357
+Tauranga;62;148.0;233
+Hong Kong;145;232.0;323
+Belgrade;35;125.0;210
+Boise;14;114.0;207
+Palmerston North;40;132.0;223
+Minsk;-22;67.0;160
+Nouadhibou;120;212.0;303
+Abha;87;179.0;268
+Antsiranana;165;252.0;339
+Abéché;206;293.0;389
+Kabul;23;120.0;209
+Ngaoundéré;126;219.0;308
+Denver;16;103.0;196
+Rangpur;153;243.0;347
+Hobart;38;126.0;220
+Marrakesh;106;196.0;287
+Chiang Mai;164;257.0;344
+Erbil;108;195.0;288
+La Ceiba;173;262.0;349
+St. Louis;49;138.0;230
+Mombasa;176;262.0;357
+Napoli;66;159.0;249
+Charlotte;64;161.0;247
+Palm Springs;163;245.0;332
+Darwin;176;275.0;361
+Benghazi;104;199.0;286
+Alexandria;112;199.0;299
+Addis Ababa;74;159.0;250
+Kuopio;-54;33.0;124
+Conakry;174;264.0;353
+Tashkent;55;148.0;233
+Erzurum;-42;50.0;151
+Suva;164;255.0;351
+Kuala Lumpur;184;272.0;364
+Adelaide;85;173.0;264
+Nashville;67;153.0;247
+Seoul;34;125.0;213
+Baltimore;46;131.0;219
+Zürich;6;92.0;180
+Malabo;174;263.0;358
+Mandalay;187;280.0;369
+Vancouver;14;104.0;195
+Lodwar;199;292.0;397
+Rabat;84;171.0;257
+Lahore;149;242.0;336
+Ahvaz;165;254.0;350
+Indianapolis;31;118.0;201
+Mahajanga;175;263.0;350
+Sofia;17;106.0;190
+Mango;194;281.0;368
+Palermo;98;185.0;268
+Manama;172;265.0;356
+Toronto;-6;94.0;197
+Bergen;-3;77.0;184
+Bilbao;61;146.0;242
+Valletta;91;187.0;276
+Kyoto;72;158.0;245
+Lisbon;83;175.0;263
+Helsinki;-34;59.0;163
+Oklahoma City;67;158.0;249
+Manila;198;284.0;372
+Bangui;164;260.0;354
+Lake Tekapo;-2;87.0;182
+Amsterdam;12;102.0;189
+Boston;22;108.0;195
+Djibouti;205;298.0;389
+Dushanbe;59;146.0;239
+Saskatoon;-56;32.0;123
+Dublin;14;97.0;193
+Sana'a;112;199.0;288
+Hat Yai;177;269.0;356
+Launceston;45;130.0;217
+Sokoto;190;279.0;370
+Lomé;173;269.0;369
+Lagos;179;267.0;372
+Gabès;102;194.0;299
+Madrid;57;149.0;241
+Port Vila;153;243.0;347
+Jakarta;179;266.0;355
+Taipei;144;229.0;315
+Sacramento;63;163.0;251
+Cape Town;66;162.0;252
+Harare;91;183.0;276
+Naha;140;230.0;334
+Lake Havasu City;149;236.0;324
+Kandi;177;277.0;372
+Reykjavík;-50;42.0;150
+Salt Lake City;26;116.0;211
+Podgorica;60;153.0;256
+Ghanzi;126;214.0;312
+Auckland;66;151.0;242
+Tripoli;107;199.0;291
+Pretoria;82;181.0;269
+Bridgetown;184;269.0;355
+N'Djamena;196;282.0;383
+Wau;182;277.0;367
+Oulu;-65;26.0;114
+Kingston;188;274.0;362
+Bosaso;208;299.0;391
+Dunedin;21;111.0;196
+Las Vegas;114;202.0;294
+Istanbul;46;138.0;227
+Vientiane;168;259.0;362
+Bissau;184;269.0;361
+Valencia;99;183.0;271
+San Juan;180;271.0;367
+Oslo;-32;56.0;157
+Ségou;173;279.0;373
+Christchurch;30;122.0;216
+Thessaloniki;71;160.0;253
+Ulaanbaatar;-93;-3.0;96
+Warsaw;-8;85.0;192
+Edmonton;-49;41.0;125
+Asmara;66;155.0;245
+Nairobi;87;178.0;273
+Vienna;10;104.0;203
+Yellowknife;-125;-42.0;50
+Budapest;21;112.0;195
+Irkutsk;-78;9.0;105
+Barcelona;89;182.0;280
+Colombo;185;273.0;359
+Nicosia;105;196.0;285
+Nouakchott;174;256.0;345
+Odienné;171;259.0;355
+Monterrey;133;222.0;318
+Garissa;200;293.0;377
+Mexicali;142;231.0;318
+Tijuana;87;177.0;263
+Parakou;180;268.0;363
+Baguio;103;194.0;281
+Ndola;118;202.0;293
+Oranjestad;190;280.0;373
+Saint Petersburg;-34;57.0;142
+New Orleans;118;207.0;298
+Ouarzazate;94;189.0;283
+Wellington;22;128.0;228
+Toliara;151;241.0;337
+Ho Chi Minh City;190;274.0;369
+Dili;178;266.0;354
+Niigata;47;138.0;227
+Halifax;-11;74.0;160
+Hargeisa;131;217.0;301
+Kankan;157;265.0;355
+San Diego;90;178.0;268
+Odesa;17;106.0;195
+Da Lat;94;179.0;274
+Yerevan;24;124.0;211
+Guadalajara;121;208.0;297
+Alice Springs;118;209.0;310
+Karonga;146;244.0;339
+Tehran;78;170.0;263
+Kampala;108;200.0;291
+Hamilton;52;138.0;224
+Nassau;146;245.0;334
+Jos;135;228.0;326
+Yaoundé;146;237.0;325
+Blantyre;136;222.0;306
+Lyon;37;124.0;217
+Beijing;22;128.0;224
+London;26;112.0;206
+San Salvador;139;230.0;316
+Niamey;209;292.0;396
+San José;118;226.0;325
+Bangkok;199;285.0;373
+Rostov-on-Don;10;99.0;187
+Belize City;176;267.0;360
+Accra;176;263.0;353
+Alexandra;24;110.0;209
+Garoua;190;282.0;369
+Gjoa Haven;-251;-143.0;-53
+Kansas City;36;124.0;209
+Kuwait City;168;256.0;350
+Tucson;124;209.0;304
+Dampier;176;264.0;367
+St. John's;-42;50.0;140
+La Paz;142;236.0;335
+Washington, D.C.;62;145.0;249
+Abidjan;174;259.0;343
+Cracow;0;92.0;192
+Zagreb;15;106.0;196
+Ürümqi;-22;74.0;168
+Lhasa;-8;75.0;165
+Kano;175;263.0;347
+Chongqing;94;185.0;268
+Bishkek;22;112.0;202
+Tallinn;-31;63.0;154
+Murmansk;-94;6.0;96
+Mogadishu;181;271.0;364
+Bouaké;179;259.0;351
+Upington;113;203.0;307
+Baghdad;144;227.0;322
+Bratislava;16;105.0;190
+Havana;162;251.0;345
+Saint-Pierre;-51;57.0;142
+Philadelphia;42;132.0;216
+Khartoum;213;298.0;392
+City of San Marino;25;118.0;218
+Fukuoka;77;169.0;277
+Jayapura;179;270.0;360
+Reggane;193;282.0;386
+Brussels;5;104.0;194
+Libreville;168;258.0;355
+Durban;120;206.0;298
+Karachi;168;259.0;352
+Damascus;80;169.0;265
+Chicago;-10;97.0;189
+San Jose;77;164.0;256
+Copenhagen;-6;90.0;184
+Minneapolis;-30;77.0;169
+Brazzaville;161;250.0;343
+Timbuktu;191;280.0;365
+Guangzhou;137;223.0;317
+Tampa;147;229.0;332
+Monaco;74;164.0;254
+Cotonou;184;271.0;357
+Miami;163;249.0;332
+Algiers;97;181.0;272
+Montreal;-25;67.0;153
+Hanoi;149;236.0;326
+Sarajevo;13;101.0;186
+Lubumbashi;121;208.0;303
+Mumbai;163;270.0;359
+Luxembourg City;6;92.0;187
+Phoenix;147;239.0;326
+Calgary;-43;43.0;128
+Tegucigalpa;127;217.0;305
+Tel Aviv;103;200.0;292
+Bata;163;250.0;339
+Gangtok;67;152.0;236
+Medan;170;264.0;355
+Stockholm;-20;66.0;159
+Heraklion;102;188.0;282
+Petropavlovsk-Kamchatsky;-68;18.0;109
+Chittagong;166;258.0;350
+Harbin;-57;49.0;135
+Banjul;176;260.0;346
+Ifrane;27;114.0;198
+Sydney;87;177.0;272
+Changsha;77;173.0;258
+Canberra;38;131.0;217
+Cairo;123;213.0;300
+Winnipeg;-59;30.0;123
+Toamasina;150;233.0;327
+Hiroshima;70;163.0;254
+San Francisco;60;145.0;236
+Gaborone;117;210.0;299
+Port Sudan;184;283.0;374
+Brisbane;129;214.0;307
+Dallas;101;189.0;297
+Burnie;39;130.0;222
+Pyongyang;17;108.0;207
+Assab;212;305.0;393
+Los Angeles;102;185.0;276
+Toluca;36;123.0;209
+Suwałki;-15;71.0;172
+Riga;-34;61.0;147
+Tromsø;-59;28.0;112
+Antananarivo;92;179.0;264
