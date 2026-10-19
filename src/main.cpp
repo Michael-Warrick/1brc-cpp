@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 
 #include "1brc/michael.hpp"

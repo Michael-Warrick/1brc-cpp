@@ -1,3 +1,6 @@
+measurements*.txt
+output.txt
+
 # C++ stuff
 # Prerequisites
 *.d
